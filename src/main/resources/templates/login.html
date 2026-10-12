@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Tracker Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #edf5f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: white;
+            padding: 32px;
+            width: 100%;
+            max-width: 380px;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px #00000015;
+        }
+
+        h1 {
+            color: #248567;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: #248567;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #17694f;
+        }
+
+        .error {
+            color: #c62828;
+            text-align: center;
+        }
+
+        .logout {
+            color: #248567;
+            text-align: center;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #248567;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="login-box">
+        <h1>Health Tracker</h1>
+        <p class="subtitle">Please sign in to continue.</p>
+
+        <div th:if="${param.error}" class="error">
+            Invalid username or password.
+        </div>
+
+        <div th:if="${param.logout}" class="logout">
+            You have logged out successfully.
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <input type="text"
+                   name="username"
+                   placeholder="Username"
+                   autocomplete="username"
+                   required>
+
+            <input type="password"
+                   name="password"
+                   placeholder="Password"
+                   autocomplete="current-password"
+                   required>
+
+            <button type="submit">Sign In</button>
+        </form>
+
+        <p class="register-link">
+            Don't have an account?
+            <a th:href="@{/register}">Create an account</a>
+        </p>
+    </main>
+</body>
+</html>

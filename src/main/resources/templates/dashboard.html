@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Tracker Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f7f5;
+            margin: 0;
+            padding: 24px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 14px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px #00000012;
+        }
+        h1 { color: #176b52; }
+        .activity {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        button {
+            background: #176b52;
+            color: white;
+            border: 0;
+            border-radius: 8px;
+            padding: 10px 16px;
+            cursor: pointer;
+        }
+        .note { color: #52645d; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>My Health Tracker</h1>
+    <p class="note">Your daily health routine at a glance.</p>
+
+    <div class="card">
+        <h2>Today's Progress</h2>
+        <p>Activities completed: <strong id="count">0 of 5</strong></p>
+        <progress id="progress" value="0" max="5"></progress>
+    </div>
+
+    <div class="card">
+        <h2>Daily Activities</h2>
+
+        <div class="activity">
+            <p>🥣 Breakfast</p>
+            <button onclick="complete(this)">Done</button>
+        </div>
+        <hr>
+
+        <div class="activity">
+            <p>💧 Drink water</p>
+            <button onclick="complete(this)">Done</button>
+        </div>
+        <hr>
+
+        <div class="activity">
+            <p>🍎 Healthy snack</p>
+            <button onclick="complete(this)">Done</button>
+        </div>
+        <hr>
+
+        <div class="activity">
+            <p>🍱 Lunch</p>
+            <button onclick="complete(this)">Done</button>
+        </div>
+        <hr>
+
+        <div class="activity">
+            <p>🌙 Dinner</p>
+            <button onclick="complete(this)">Done</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let completed = 0;
+
+    function complete(button) {
+        if (button.disabled) return;
+
+        button.disabled = true;
+        button.textContent = "Completed ✓";
+        button.style.background = "#6b8f82";
+
+        completed++;
+        document.getElementById("count").textContent =
+            completed + " of 5";
+
+        document.getElementById("progress").value = completed;
+    }
+</script>
+</body>
+</html>

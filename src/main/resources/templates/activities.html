@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Health Activities</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f7f5;
+            padding: 24px;
+        }
+        .container { max-width: 750px; margin: auto; }
+        .card {
+            background: white;
+            padding: 18px;
+            margin: 12px 0;
+            border-radius: 12px;
+        }
+        button {
+            background: #176b52;
+            color: white;
+            border: 0;
+            padding: 10px 14px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+        input {
+            padding: 10px;
+            margin: 5px 0;
+            max-width: 100%;
+        }
+        .success { color: #176b52; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>My Health Tracker</h1>
+    <p>Welcome! Track your daily activities here.</p>
+
+    <p class="success" th:if="${success}" th:text="${success}"></p>
+
+    <div class="card">
+        <h2>Add an activity</h2>
+        <form th:action="@{/activities/add}" method="post">
+            <input name="activityName"
+                   placeholder="Activity name" required>
+            <input name="scheduledTime"
+                   placeholder="Time, e.g. 8:00 AM" required>
+            <button type="submit">Add Activity</button>
+        </form>
+    </div>
+
+    <div th:if="${#lists.isEmpty(activities)}" class="card">
+        No activities yet. Add your first activity above.
+    </div>
+
+    <div th:each="activity : ${activities}" class="card">
+        <h3 th:text="${activity.activityName}">Breakfast</h3>
+        <p>
+            Scheduled:
+            <span th:text="${activity.scheduledTime}">8:00 AM</span>
+        </p>
+
+        <p th:if="${activity.completed}">Completed ✓</p>
+
+        <form th:unless="${activity.completed}"
+              th:action="@{/activities/{id}/complete(id=${activity.id})}"
+              method="post">
+            <button type="submit">Mark as Done</button>
+        </form>
+    </div>
+
+    <p><a th:href="@{/}">Back to Dashboard</a></p>
+</div>
+</body>
+</html>

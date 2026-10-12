@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Health Tracker Application</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f7f4;
+            margin: 0;
+            padding: 20px;
+            color: #24352d;
+        }
+
+        header {
+            text-align: center;
+            background: #248567;
+            color: white;
+            padding: 25px;
+            border-radius: 14px;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 25px auto;
+        }
+
+        .activity {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            margin: 12px 0;
+            padding: 16px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px #00000012;
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .time {
+            color: #64756c;
+            font-size: 14px;
+        }
+
+        button {
+            background: #248567;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            padding: 10px 14px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background: #a4b6ad;
+            cursor: default;
+        }
+
+        .completed {
+            border-left: 5px solid #248567;
+        }
+
+        #message {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <h1>Health Tracker</h1>
+    <p>Your daily wellness routine, organized.</p>
+</header>
+
+<main class="container">
+    <h2>Today's Activities</h2>
+    <p>Track your food, water, exercise and scheduled activities.</p>
+
+    <div class="activity">
+        <div class="details">
+            <strong>Wake Up</strong>
+            <span class="time">6:00 AM</span>
+        </div>
+        <button onclick="markDone(this)">✓ Done</button>
+    </div>
+
+    <div class="activity">
+        <div class="details">
+            <strong>Exercise</strong>
+            <span class="time">6:00 AM – 7:00 AM</span>
+        </div>
+        <button onclick="markDone(this)">✓ Done</button>
+    </div>
+
+    <div class="activity">
+        <div class="details">
+            <strong>Breakfast</strong>
+            <span class="time">7:30 AM – 8:00 AM</span>
+        </div>
+        <button onclick="markDone(this)">✓ Done</button>
+    </div>
+
+    <div class="activity">
+        <div class="details">
+            <strong>Prescribed Tablets</strong>
+            <span class="time">At your healthcare professional's scheduled time</span>
+        </div>
+        <button onclick="markDone(this)">✓ Done</button>
+    </div>
+
+    <div class="activity">
+        <div class="details">
+            <strong>Drink Water</strong>
+            <span class="time">Throughout the day</span>
+        </div>
+        <button onclick="markDone(this)">✓ Done</button>
+    </div>
+
+    <div class="activity">
+        <div class="details">
+            <strong>Lunch</strong>
+            <span class="time">1:00 PM</span>
+        </div>
+        <button onclick="markDone(this)">✓ Done</button>
+    </div>
+
+    <div class="activity">
+        <div class="details">
+            <strong>Healthy Snack</strong>
+            <span class="time">4:30 PM</span>
+        </div>
+        <button onclick="markDone(this)">✓ Done</button>
+    </div>
+
+    <div class="activity">
+        <div class="details">
+            <strong>Dinner</strong>
+            <span class="time">8:00 PM</span>
+        </div>
+        <button onclick="markDone(this)">✓ Done</button>
+    </div>
+
+    <p id="message">Complete an activity to update its status.</p>
+</main>
+
+<script>
+    function markDone(button) {
+        button.textContent = "Completed";
+        button.disabled = true;
+
+        button.parentElement.classList.add("completed");
+
+        document.getElementById("message").textContent =
+            "Activity completed successfully!";
+    }
+</script>
+
+</body>
+</html>
